@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "gabut" "\0"
+            VALUE "FileDescription", "dawer_shared" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "gabut" "\0"
+            VALUE "InternalName", "dawer_shared" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2022 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "gabut.exe" "\0"
-            VALUE "ProductName", "gabut" "\0"
+            VALUE "OriginalFilename", "dawer_shared.exe" "\0"
+            VALUE "ProductName", "dawer_shared" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

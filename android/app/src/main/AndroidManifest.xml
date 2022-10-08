@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.gabut">
+    package="com.example.dawer_shared">
    <application
-        android:label="gabut"
+        android:label="dawer_shared"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
