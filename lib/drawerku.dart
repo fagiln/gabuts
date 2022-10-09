@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'home.dart';
+import 'login.dart';
+import 'setting.dart';
 
 class Myheader extends StatefulWidget {
   const Myheader({super.key});
@@ -32,43 +35,81 @@ class _MyheaderState extends State<Myheader> {
           ],
         ));
   }
+}
 
-  //widget membuat list di drawer
-  Widget Mydrawerlist() {
-    return Container(
-        padding: EdgeInsets.only(top: 15, bottom: 15),
-        child: Column(
-          children: [
-            menuItem(),
-          ],
-        ));
-  }
+Widget Mydrawerlist() {
+  return Container(
+      padding: EdgeInsets.only(top: 10, bottom: 15),
+      child: Column(
+        children: [
+          menuItem(),
+        ],
+      ));
+}
 
-  //widget item drawer
-  Widget menuItem() {
-    return Material(
-        child: InkWell(
-      onTap: () {},
-      child: Padding(
-          padding: EdgeInsets.only(top: 20, bottom: 20),
-          child: Row(children: [
-            Expanded(
-              child: Icon(
-                Icons.dashboard_outlined,
-                size: 20,
-                color: Colors.black,
-              ),
-            ),
-            Expanded(
-                flex: 4,
-                child: Text(
-                  "Home",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
+//widget item drawer
+Widget menuItem() {
+  return Material(
+      child: Column(
+    children: [
+      InkWell(
+        onTap: () {
+          home();
+        },
+        child: Padding(
+            padding: EdgeInsets.only(top: 20, bottom: 20),
+            child: Column(
+              children: [
+                Row(children: [
+                  Expanded(
+                    child: Icon(
+                      Icons.dashboard_outlined,
+                      size: 20,
+                      color: Colors.black,
+                    ),
                   ),
-                )),
-          ])),
-    ));
-  }
+                  Expanded(
+                      flex: 4,
+                      child: Text(
+                        "Home",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                        ),
+                      )),
+                ]),
+              ],
+            )),
+      ),
+      InkWell(
+        onTap: () {
+          MySetting();
+        },
+        child: Padding(
+            padding: EdgeInsets.only(top: 20, bottom: 20),
+            child: Column(
+              children: [
+                Row(children: [
+                  Expanded(
+                    child: Icon(
+                      Icons.settings,
+                      size: 20,
+                      color: Colors.black,
+                    ),
+                  ),
+                  Expanded(
+                      flex: 4,
+                      child: Text(
+                        "Setting",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                        ),
+                      )),
+                ]),
+              ],
+            )),
+      ),
+    ],
+  ));
 }
