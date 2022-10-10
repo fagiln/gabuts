@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'main.dart';
-import 'drawerku.dart';
-import 'home.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'home.dart';
 
 class login_page extends StatelessWidget {
   final usernameC = TextEditingController();
@@ -47,13 +46,14 @@ class login_page extends StatelessWidget {
 
     cekLogin();
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 37, 37, 37),
       appBar: AppBar(
         backgroundColor: Colors.pink[200],
         title: Text("login page"),
       ),
       body: Center(
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
               margin: EdgeInsets.only(
@@ -62,10 +62,12 @@ class login_page extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  Text(
-                    "Login",
-                    style: TextStyle(fontSize: 50),
-                  ),
+                  Text("Login",
+                      style: GoogleFonts.bebasNeue(
+                        fontSize: 60,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      )),
                 ],
               ),
             ),
@@ -77,11 +79,26 @@ class login_page extends StatelessWidget {
               padding: EdgeInsets.zero,
               child: Column(
                 children: [
-                  Text("username"),
+                  Text(
+                    "username",
+                    style: TextStyle(color: Colors.white),
+                  ),
                   TextField(
                     controller: usernameC,
-                    decoration:
-                        InputDecoration(label: Text("masukan username")),
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 244, 143, 177)),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      hintText: ("masukkan username"),
+                      fillColor: Colors.white,
+                      filled: true,
+                    ),
                   )
                 ],
               ),
@@ -93,14 +110,24 @@ class login_page extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  Text("password"),
+                  Text("password", style: TextStyle(color: Colors.white)),
                   password = TextField(
                     obscureText: true,
                     controller: passwordC,
                     decoration: InputDecoration(
-                        label: Text(
-                      "masukan password",
-                    )),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 244, 143, 177)),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      hintText: ("masukkan password"),
+                      fillColor: Colors.white,
+                      filled: true,
+                    ),
                   )
                 ],
               ),
