@@ -8,13 +8,20 @@ class MySetting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-
-      ),
+ 
         appBar: AppBar(
       title: Text("Setting"),
       backgroundColor: Colors.pink[200],
-    )
+       ),
+    body: Center(
+      child: Column(
+        children:[
+          Text("disini isinya setting"),
+
+          
+        ]
+      )
+    ),
     );
   }
 }

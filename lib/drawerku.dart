@@ -1,115 +1,82 @@
 import 'package:flutter/material.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'home.dart';
+import 'main.dart';
 import 'setting.dart';
+import 'login.dart';
 
-class Myheader extends StatefulWidget {
-  const Myheader({super.key});
+class MyDrawer extends StatelessWidget {
+  const MyDrawer({super.key});
 
-  @override
-  State<Myheader> createState() => _MyheaderState();
-}
-
-class _MyheaderState extends State<Myheader> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-        color: Colors.pink[200],
-        width: double.infinity,
-        height: 200,
-        // padding:EdgeInsets.only(top: 0.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-                margin: EdgeInsets.only(bottom: 10),
-                height: 70,
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image:
-                        DecorationImage(image: AssetImage('images/dz.jpeg')))),
-            Text("Hannela Deyzy A",
-                style: TextStyle(color: Colors.white, fontSize: 20)),
-            Text("kullkas lemod",
-                style: TextStyle(color: Colors.white24, fontSize: 14))
-          ],
-        ));
-  }
-}
-
-Widget Mydrawerlist() {
-  return Container(
-      padding: EdgeInsets.only(top: 10, bottom: 15),
-      child: Column(
-        children: [
-          menuItem(),
-        ],
+    //membuat fungsi log out
+    logout() async {
+      var pref = await SharedPreferences.getInstance();
+      pref.remove("username");
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => login_page(),
       ));
-}
+    }
 
-//widget item drawer
-Widget menuItem() {
-  return Material(
-      child: Column(
-    children: [
-      InkWell(
-        onTap: () {
-          home();
-        },
-        child: Padding(
-            padding: EdgeInsets.only(top: 20, bottom: 20),
-            child: Column(
-              children: [
-                Row(children: [
-                  Expanded(
-                    child: Icon(
-                      Icons.dashboard_outlined,
-                      size: 20,
-                      color: Colors.black,
-                    ),
-                  ),
-                  Expanded(
-                      flex: 4,
-                      child: Text(
-                        "Home",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                        ),
-                      )),
-                ]),
-              ],
-            )),
+    return Drawer(
+        child: ListView(padding: EdgeInsets.zero, children: [
+      //kotak profil
+      UserAccountsDrawerHeader(
+        accountName: Text("Hannela Deyzy Annabelle"),
+        accountEmail: Text("deyzy@gmail.com"),
+        currentAccountPicture: CircleAvatar(
+          child: ClipOval(
+            child: Image.asset(
+              "images/dz.jpeg",
+              width: 90,
+              height: 90,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        decoration: BoxDecoration(
+          color: Colors.pink[200],
+        ),
       ),
-      InkWell(
+
+      // menu list
+      ListTile(
         onTap: () {
-          MySetting();
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => home()));
         },
-        child: Padding(
-            padding: EdgeInsets.only(top: 20, bottom: 20),
-            child: Column(
-              children: [
-                Row(children: [
-                  Expanded(
-                    child: Icon(
-                      Icons.settings,
-                      size: 20,
-                      color: Colors.black,
-                    ),
-                  ),
-                  Expanded(
-                      flex: 4,
-                      child: Text(
-                        "Setting",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                        ),
-                      )),
-                ]),
-              ],
-            )),
+        leading: Icon(
+          Icons.home,
+          color: Colors.grey,
+        ),
+        title: Text(
+          "Home",
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
+        ),
       ),
-    ],
-  ));
+      ListTile(
+        onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => MySetting()));
+        },
+        leading: Icon(
+          Icons.settings,
+          color: Colors.grey,
+        ),
+        title: Text(
+          "Setting",
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
+        ),
+      ),
+      ListTile(
+        leading: IconButton(
+            onPressed: () {
+              logout();
+            },
+            icon: Icon(Icons.logout, color: Colors.grey),
+            ),
+      ),
+    ]));
+  }
 }

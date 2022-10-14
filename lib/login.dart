@@ -46,15 +46,11 @@ class login_page extends StatelessWidget {
 
     cekLogin();
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 37, 37, 37),
-      appBar: AppBar(
-        backgroundColor: Colors.pink[200],
-        title: Text("login page"),
-      ),
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: <Widget>[
             Container(
               margin: EdgeInsets.only(
                 bottom: 50,
@@ -65,7 +61,7 @@ class login_page extends StatelessWidget {
                   Text("Login",
                       style: GoogleFonts.bebasNeue(
                         fontSize: 60,
-                        color: Colors.white,
+                        color: Colors.pink[200],
                         fontWeight: FontWeight.bold,
                       )),
                 ],
@@ -81,27 +77,31 @@ class login_page extends StatelessWidget {
                 children: [
                   Text(
                     "username",
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.pink[200]),
                   ),
                   TextField(
+                    
                     controller: usernameC,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(50),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                             color: Color.fromARGB(255, 244, 143, 177)),
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(50),
                       ),
                       hintText: ("masukkan username"),
-                      fillColor: Colors.white,
+                      fillColor: Color.fromARGB(22, 0, 0, 0),
                       filled: true,
                     ),
                   )
                 ],
               ),
+            ),
+            SizedBox(
+              height: 10,
             ),
             Container(
               width: 300,
@@ -109,23 +109,23 @@ class login_page extends StatelessWidget {
                 bottom: 50,
               ),
               child: Column(
-                children: [
-                  Text("password", style: TextStyle(color: Colors.white)),
+                children: <Widget>[
+                  Text("password", style: TextStyle(color: Colors.pink[200])),
                   password = TextField(
                     obscureText: true,
                     controller: passwordC,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(50),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                             color: Color.fromARGB(255, 244, 143, 177)),
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(50),
                       ),
                       hintText: ("masukkan password"),
-                      fillColor: Colors.white,
+                      fillColor: Color.fromARGB(22, 0, 0, 0),
                       filled: true,
                     ),
                   )
@@ -133,23 +133,33 @@ class login_page extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-                onPressed: () async {
-                  bool isLogin = login(usernameC.text, passwordC.text);
-                  var pref = await SharedPreferences.getInstance();
+              onPressed: () async {
+                bool isLogin = login(usernameC.text, passwordC.text);
+                var pref = await SharedPreferences.getInstance();
 
-                  cekLogin();
+                cekLogin();
 
-                  if (isLogin) {
-                    addStrinToSF(usernameC.text);
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => home(),
-                    ));
-                  } else {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(content: Text("salah input")));
-                  }
-                },
-                child: Text("submit"))
+                if (isLogin) {
+                  addStrinToSF(usernameC.text);
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => home(),
+                  ));
+                } else {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text("salah input")));
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size(200, 50),
+                // padding: EdgeInsets.all(10),
+                primary: Colors.pink[200],
+                shape: StadiumBorder(),
+              ),
+              child: Text(
+                "submit",
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
           ],
         ),
       ),
